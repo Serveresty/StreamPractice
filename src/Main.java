@@ -77,13 +77,10 @@ public class Main {
     }
 
     private static int findMaxValue(List<Transaction> transactions) {
-        OptionalInt t = transactions.stream()
+        return transactions.stream()
                 .mapToInt(Transaction::getValue)
-                .max();
-        if (t.isPresent()) {
-            return t.getAsInt();
-        }
-        return -1;
+                .max()
+                .orElse(-1);
     }
 
     private static Transaction findTransactionWithMinValue(List<Transaction> transactions) {
