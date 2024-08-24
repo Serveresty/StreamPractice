@@ -70,15 +70,10 @@ public class Main {
     }
 
     private static int sumTransactionsByCity(List<Transaction> transactions, String city) {
-        List<Integer> lst = transactions.stream()
+        return transactions.stream()
                 .filter(c -> c.getTrader().getCity().equals(city))
-                .map(Transaction::getValue)
-                .toList();
-        int result = 0;
-        for (Integer i : lst) {
-            result += i;
-        }
-        return result;
+                .mapToInt(Transaction::getValue)
+                .sum();
     }
 
     private static int findMaxValue(List<Transaction> transactions) {
